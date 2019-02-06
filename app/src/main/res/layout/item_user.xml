@@ -40,9 +40,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="5dp"
         android:layout_weight="6"
-        android:textColor="#afafaf"
-        android:textSize="15sp"
-        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="25sp"
         android:gravity="center_vertical"
         tools:text="TextView">
     </TextView>

@@ -29,7 +29,7 @@ import test.dev.axon.com.adgtestwork.entity.UsersList;
 public class FirstScreen extends AppCompatActivity {
 
     ListView list;
-    private static ArrayList<User> userList;
+    public static ArrayList<User> userList;
     private static UserAdapter adapter;
 
     @Override
@@ -40,7 +40,7 @@ public class FirstScreen extends AppCompatActivity {
 
         init();
         buttons();
-        loadUsers();
+        loadUsers("1", "20", "abc");
     }
 
     public void init(){
@@ -52,21 +52,15 @@ public class FirstScreen extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getApplicationContext(), SecondScreen.class);
-//                intent.putExtra("list",db.findClient(clientsList.get(i)).get_photo());
-//                intent.putExtra("name",db.findClient(clientsList.get(i)).get_name());
-//                intent.putExtra("age",db.findClient(clientsList.get(i)).get_age());
-//                intent.putExtra("tall",db.findClient(clientsList.get(i)).get_tall());
-//                intent.putExtra("weight",db.findClient(clientsList.get(i)).get_weight());
-//                intent.putExtra("days",db.findClient(clientsList.get(i)).get_days());
-//                intent.putExtra("info",db.findClient(clientsList.get(i)).get_info());
+                intent.putExtra("id",i);
                 startActivity(intent);
             }
         });
     }
 
-    public void loadUsers(){
+    public void loadUsers(String page, String results, String seed){
         ApiService api = RetroClient.getApiService();
-        Call<UsersList> call = api.getUsers("1","20","abc");
+        Call<UsersList> call = api.getUsers(page,results,seed);
 
         /**
          * Enqueue Callback will be call when get response...
