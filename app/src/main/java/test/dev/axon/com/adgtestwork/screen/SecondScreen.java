@@ -94,7 +94,7 @@ public class SecondScreen extends AppCompatActivity {
                 btnAddress.setImageResource(R.drawable.address);
                 btnPhone.setImageResource(R.drawable.phone);
                 text1.setText("My birthday is");
-                text2.setText(FirstScreen.userList.get(id).getDob().date);
+                text2.setText(FirstScreen.userList.get(id).getDob().date.substring(0,10));
             }
         });
 
