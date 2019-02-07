@@ -3,12 +3,14 @@ package test.dev.axon.com.adgtestwork.screen;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +33,9 @@ public class FirstScreen extends AppCompatActivity {
     ListView list;
     public static ArrayList<User> userList;
     private static UserAdapter adapter;
+    private static int page = 1;
+    private FloatingActionButton previous;
+    private FloatingActionButton next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +45,13 @@ public class FirstScreen extends AppCompatActivity {
 
         init();
         buttons();
-        loadUsers("1", "20", "abc");
+        loadUsers(page+"", "20", "abc");
     }
 
     public void init(){
         list = findViewById(R.id.list);
+        previous = findViewById(R.id.floatingActionButton2);
+        next = findViewById(R.id.floatingActionButton1);
     }
 
     public void buttons(){
@@ -54,6 +61,30 @@ public class FirstScreen extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SecondScreen.class);
                 intent.putExtra("id",i);
                 startActivity(intent);
+            }
+        });
+
+        previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(page!=1){
+                    page--;
+                    loadUsers(page+"", "20", "abc");
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Page number " + page, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                page++;
+                loadUsers(page+"", "20", "abc");
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Page number " + page, Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
     }

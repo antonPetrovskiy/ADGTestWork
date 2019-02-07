@@ -9,7 +9,7 @@ import java.util.List;
 public class User {
     @SerializedName("gender")
     @Expose
-    private String gender;
+    public String gender;
 
     @SerializedName("name")
     @Expose
@@ -46,7 +46,7 @@ public class User {
 
     @SerializedName("email")
     @Expose
-    private String email;
+    public String email;
 
     @SerializedName("dob")
     @Expose
@@ -62,7 +62,7 @@ public class User {
 
     @SerializedName("phone")
     @Expose
-    private String phone;
+    public String phone;
 
     @SerializedName("picture")
     @Expose
